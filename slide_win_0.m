@@ -1,4 +1,4 @@
-im=imread('table.jpg');
+im=imread('binarized_check.jpg');
 
 % rgb to gray
 im2=rgb2gray(im);
@@ -27,9 +27,9 @@ hold all
 
 
 % use OCR
-for i=1:numel(s)    
-    tmp=ceil(s(i).BoundingBox);
-    tmp=im_bw(tmp(2):tmp(2)+tmp(4),tmp(1):tmp(1)+tmp(3),:);
-    txt=ocr(tmp,'CharacterSet','0123456789');    
-    text(s(i).Centroid(1),s(i).Centroid(2),txt.Text,'Color','r')    
-end
+%for i=1:numel(s)    
+%    tmp=ceil(s(i).BoundingBox);
+%    tmp=im_bw(tmp(2):tmp(2)+tmp(4),tmp(1):tmp(1)+tmp(3),:);
+%    txt=ocr(tmp,'CharacterSet','0123456789');    
+%    text(s(i).Centroid(1),s(i).Centroid(2),txt.Text,'Color','r')    
+%end
