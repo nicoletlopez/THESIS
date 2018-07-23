@@ -1,0 +1,5 @@
+clc; clear;
+
+% Load training and test data using |imageDatastore|.
+%syntheticDir   = fullfile(toolboxdir('vision'), 'visiondata','digits','synthetic');
+%handwrittenDir = fullfile(toolboxdir('vision'), 'visiondata','digits','handwritten');
