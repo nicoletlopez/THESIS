@@ -4,7 +4,7 @@ clc; clear;
 %syntheticDir   = fullfile(toolboxdir('vision'), 'visiondata','digits','synthetic');
 %handwrittenDir = fullfile(toolboxdir('vision'), 'visiondata','digits','handwritten');
 syntheticDir = 'Fnt';
-handwrittenDir = 'Hnd';
+%handwrittenDir = 'Hnd';
 
 % |imageDatastore| recursively scans the directory tree containing the
 % images. Folder names are automatically used as labels for each image.
@@ -71,7 +71,11 @@ subplot(2,3,6);
 plot(vis8x8); 
 title({'CellSize = [8 8]'; ['Length = ' num2str(length(hog_8x8))]});
 
-%Train the Character Classifier
+
+cellSize = [4 4];
+hogFeatureSize = length(hog_4x4);
+
+% TRAINING 
 % Loop over the trainingSet and extract HOG features from each image. A
 % similar procedure will be used to extract features from the testSet.
 
@@ -81,7 +85,12 @@ trainingFeatures = zeros(numImages, hogFeatureSize, 'single');
 for i = 1:numImages
     img = readimage(trainingSet, i);
     
-    img = rgb2gray(img);
+    [rows,columns,numberOfColorChannels] = size(img);
+    if numberOfColorChannels > 1
+        % It's a true color RGB image.  We need to convert to gray scale.
+        img = rgb2gray(img);
+    else
+        
     
     % Apply pre-processing steps
     img = imbinarize(img);
@@ -94,3 +103,17 @@ trainingLabels = trainingSet.Labels;
 
 % fitcecoc uses SVM learners and a 'One-vs-One' encoding scheme.
 classifier = fitcecoc(trainingFeatures, trainingLabels);
+
+% EVALUATION
+
+% Extract HOG features from the test set. The procedure is similar to what
+% was shown earlier and is encapsulated as a helper function for brevity.
+[testFeatures, testLabels] = helperExtractHOGFeaturesFromImageSet(testSet, hogFeatureSize, cellSize);
+
+% Make class predictions using the test features.
+predictedLabels = predict(classifier, testFeatures);
+
+% Tabulate the results using a confusion matrix.
+confMat = confusionmat(testLabels, predictedLabels);
+
+helperDisplayConfusionMatrix(confMat)

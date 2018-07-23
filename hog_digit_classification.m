@@ -85,7 +85,12 @@ trainingFeatures = zeros(numImages, hogFeatureSize, 'single');
 for i = 1:numImages
     img = readimage(trainingSet, i);
     
-    img = rgb2gray(img);
+    [rows,columns,numberOfColorChannels] = size(img);
+    if numberOfColorChannels > 1
+        % It's a true color RGB image.  We need to convert to gray scale.
+        img = rgb2gray(img);
+    end
+        
     
     % Apply pre-processing steps
     img = imbinarize(img);
