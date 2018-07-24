@@ -1,10 +1,15 @@
 clc; clear;
 
 % Load training and test data using |imageDatastore|.
-syntheticDir   = fullfile(toolboxdir('vision'), 'visiondata','digits','synthetic');
-handwrittenDir = fullfile(toolboxdir('vision'), 'visiondata','digits','handwritten');
+% syntheticDir   = fullfile(toolboxdir('vision'), 'visiondata','digits','synthetic');
+% handwrittenDir = fullfile(toolboxdir('vision'), 'visiondata','digits','handwritten');
+
 % syntheticDir = 'Fnt';
 % handwrittenDir = 'Hnd';
+ 
+syntheticDir = 'small_data_set_hnd/training';
+handwrittenDir = 'small_data_set_hnd/testing';
+
 
 % |imageDatastore| recursively scans the directory tree containing the
 % images. Folder names are automatically used as labels for each image.
