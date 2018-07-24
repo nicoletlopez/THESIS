@@ -1,7 +1,18 @@
 im=imread('binarized_check.jpg');
 
 % rgb to gray
-im2=rgb2gray(im);
+% im2=rgb2gray(im);
+
+% Loop through all the images to know if it's already in binary format
+% (attempting to binarize a B&W image throws an error)
+% Note: please turn into a helper function later
+[rows,columns,numberOfColorChannels] = size(im);
+if numberOfColorChannels > 1
+   % It's a true color RGB image.  We need to convert to gray scale.
+     im2 = rgb2gray(im);
+else
+    im2 = im
+end
 
 % threshold
 im_bw=im2<240;
@@ -27,9 +38,9 @@ hold all
 
 
 % use OCR
-%for i=1:numel(s)    
+% for i=1:numel(s)    
 %    tmp=ceil(s(i).BoundingBox);
 %    tmp=im_bw(tmp(2):tmp(2)+tmp(4),tmp(1):tmp(1)+tmp(3),:);
 %    txt=ocr(tmp,'CharacterSet','0123456789');    
 %    text(s(i).Centroid(1),s(i).Centroid(2),txt.Text,'Color','r')    
-%end
+% end
