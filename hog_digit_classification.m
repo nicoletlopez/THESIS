@@ -1,10 +1,10 @@
 clc; clear;
 
 % Load training and test data using |imageDatastore|.
-%syntheticDir   = fullfile(toolboxdir('vision'), 'visiondata','digits','synthetic');
-%handwrittenDir = fullfile(toolboxdir('vision'), 'visiondata','digits','handwritten');
-syntheticDir = 'Fnt';
-handwrittenDir = 'Hnd';
+syntheticDir   = fullfile(toolboxdir('vision'), 'visiondata','digits','synthetic');
+handwrittenDir = fullfile(toolboxdir('vision'), 'visiondata','digits','handwritten');
+% syntheticDir = 'Fnt';
+% handwrittenDir = 'Hnd';
 
 % |imageDatastore| recursively scans the directory tree containing the
 % images. Folder names are automatically used as labels for each image.
@@ -85,6 +85,9 @@ trainingFeatures = zeros(numImages, hogFeatureSize, 'single');
 for i = 1:numImages
     img = readimage(trainingSet, i);
     
+    % Loop through all the images to know if it's already in binary format
+    % (attempting to binarize a B&W image throws an error)
+    % Note: please turn into a helper function later
     [rows,columns,numberOfColorChannels] = size(img);
     if numberOfColorChannels > 1
         % It's a true color RGB image.  We need to convert to gray scale.
