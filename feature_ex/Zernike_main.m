@@ -59,14 +59,14 @@ xlabel({['A = ' num2str(AOH)]; ['\phi = ' num2str(PhiOH)]});
 
 %--------------------------------------------------------------------------
 % row 2
-p = rgb2gray(imread('shape_0.png'));
+p = rgb2gray(imread('Shape_0.png'));
 figure(1);subplot(2,3,4);imshow(p);
 title('Horizontal shape');
 p = logical(not(p));
 [~, AOH, PhiOH] = Zernikmoment(p,n,m);      % Call Zernikemoment fuction
 xlabel({['A = ' num2str(AOH)]; ['\phi = ' num2str(PhiOH)]});
 
-p = rgb2gray(imread('shape_90.png'));
+p = rgb2gray(imread('Shape_90.png'));
 figure(1);subplot(2,3,5);imshow(p);
 title('Vertical shape');
 p = logical(not(p));
