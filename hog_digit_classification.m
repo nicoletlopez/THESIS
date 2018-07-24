@@ -93,7 +93,7 @@ for i = 1:numImages
         % It's a true color RGB image.  We need to convert to gray scale.
         img = rgb2gray(img);
     else
-        img = img
+        img = img;
     end
         
     
