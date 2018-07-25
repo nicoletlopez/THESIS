@@ -1,6 +1,6 @@
 clc; clear;
 
-im=imread('check_no_edge.jpg');
+im=imread('binarized_check_no_edge.png');
 
 % rgb to gray
 % im2=rgb2gray(im);
@@ -38,7 +38,7 @@ hold all
 
 
 
-use OCR
+% use OCR
 for i=1:numel(s)    
    tmp=ceil(s(i).BoundingBox);
    tmp=im_bw(tmp(2):tmp(2)+tmp(4),tmp(1):tmp(1)+tmp(3),:);
