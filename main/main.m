@@ -11,7 +11,8 @@ bin = sauvola(img_gray,[3 3], 0.34);
 
 %show the image
 figure;
-imshow(bin)
+imshow(bin);
+title('Binarized Image');
 
 % END PREPROCESSING
 

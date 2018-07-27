@@ -10,7 +10,7 @@ im=imread('binarized_check_no_edge.png');
 % Note: please turn into a helper function later
 [rows,columns,numberOfColorChannels] = size(im);
 if numberOfColorChannels > 1
-     im2 = rgb2gray(im);
+    im2 = rgb2gray(im);
 else
     im2 = im
 end
