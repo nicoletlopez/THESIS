@@ -20,6 +20,6 @@ function segmented_image = window_sliding(binarized_image)
     
     figure;
     imshow(Iocr,[]);
-    hold all;
+    hold all
     
 end
