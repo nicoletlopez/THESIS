@@ -10,9 +10,12 @@ img_gray = safe_grayscale(image);
 bin = sauvola(img_gray,[3 3], 0.34);
 
 %show the image
+figure;
 imshow(bin)
 
 % END PREPROCESSING
 
 % SEGMENTATION
+
+window_sliding(bin);
 

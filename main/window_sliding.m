@@ -1,5 +1,6 @@
 % Segment an image subjected to Sauvola
-function segmented_image = window_sliding(binarized_image)
+% function segmented_image = window_sliding(binarized_image)
+function window_sliding(binarized_image)
     % Threshold 
     im_bw = binarized_image<240;
     
@@ -16,10 +17,9 @@ function segmented_image = window_sliding(binarized_image)
     % Remove if not necessary
     s = regionprops(im5,'PixelIdxList','Centroid','BoundingBox');
     bboxes = cat(1,s.BoundingBox);
-    Iocr = insertShape(im, 'Rectangle',bboxes,'Color','blue');
+    Iocr = insertShape(binarized_image, 'Rectangle',bboxes,'Color','blue');
     
     figure;
     imshow(Iocr,[]);
     hold all
-    
 end
