@@ -1,6 +1,6 @@
 clc; clear;
 
-% Preprocessing
+% PREPROCESSING
 image = imread('binarized_check_no_edge.png');
 
 % Return the grayscaled image after checking
@@ -11,3 +11,8 @@ bin = sauvola(img_gray,[3 3], 0.34);
 
 %show the image
 imshow(bin)
+
+% END PREPROCESSING
+
+% SEGMENTATION
+
