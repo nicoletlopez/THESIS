@@ -18,10 +18,7 @@ img_gray = rgb2gray(image);
 
 
 %binarize it using Sauvola's threshold
-bin = sauvola(img_gray,[3 3], 0.3);
+bin = sauvola(img_gray,[3 3], 0.34);
 
 %show the image
 imshow(bin)
-
-
-

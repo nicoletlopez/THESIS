@@ -35,7 +35,9 @@ disp(['Calculating Zernike moments ..., n = ' num2str(n) ', m = ' num2str(m)]);
 %--------------------------------------------------------------------------
 % row 1
 p = rgb2gray(imread('Oval_H.png'));
-figure(1);subplot(2,3,1);imshow(p);
+figure(1);
+subplot(2,3,1);
+imshow(p);
 title('Horizontal oval');
 p = logical(not(p));
 tic
