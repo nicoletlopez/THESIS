@@ -14,16 +14,16 @@ bin = sauvola(img_gray,window_step, threshold);
 %show the image
 figure;
 imshow(bin);
-figure_title = strcat('Binarized Image - SV:',threshold);
-title('Binarized Image - SV:' + threshold);
+figure_title = strcat('Binarized Image - SV');
+title(figure_title);
 
 % END PREPROCESSING
 
 % Save the binarized image
- imwrite(bin,'binarized_image.png');
+imwrite(bin,'binarized_image.png');
 
 % SEGMENTATION
 bin = imread('binarized_image.png');
-bin = safe_grayscale(bin);
+bin = im2uint8
 window_sliding(bin);
 
