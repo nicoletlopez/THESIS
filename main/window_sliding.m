@@ -1,9 +1,6 @@
 % Segment an image subjected to Sauvola
 % function segmented_image = window_sliding(binarized_image)
 function window_sliding(binarized_image)
-    % Binarize again?!
-    im2 = safe_grayscale(binarized_image)
-    
     % Threshold 
     im_bw = binarized_image<240;
     
