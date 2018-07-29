@@ -19,11 +19,7 @@ title(figure_title);
 
 % END PREPROCESSING
 
-% Save the binarized image
-imwrite(bin,'binarized_image.png');
-
 % SEGMENTATION
-bin = imread('binarized_image.png');
 bin = im2uint8(bin);
 window_sliding(bin);
 
