@@ -21,5 +21,6 @@ function window_sliding(binarized_image)
     
     figure;
     imshow(Iocr,[]);
+    title("Window Sliding");
     hold all
 end
