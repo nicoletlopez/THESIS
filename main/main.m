@@ -20,6 +20,7 @@ title(figure_title);
 % END PREPROCESSING
 
 % SEGMENTATION
+% Transform a "logical" object to uint8 for segmentation 
 bin = im2uint8(bin);
 window_sliding(bin);
 
