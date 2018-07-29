@@ -17,6 +17,5 @@ title('Binarized Image');
 % END PREPROCESSING
 
 % SEGMENTATION
-
 window_sliding(bin);
 
