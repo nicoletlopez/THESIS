@@ -1,14 +1,14 @@
 clc; clear;
 
 % Load training and test data using |imageDatastore|.
-% syntheticDir   = fullfile(toolboxdir('vision'), 'visiondata','digits','synthetic');
-% handwrittenDir = fullfile(toolboxdir('vision'), 'visiondata','digits','handwritten');
+syntheticDir   = fullfile(toolboxdir('vision'), 'visiondata','digits','synthetic');
+handwrittenDir = fullfile(toolboxdir('vision'), 'visiondata','digits','handwritten');
 
 % syntheticDir = 'Fnt';
 % handwrittenDir = 'Hnd';
  
-syntheticDir = 'small_data_set_hnd/training';
-handwrittenDir = 'small_data_set_hnd/testing';
+% syntheticDir = 'small_data_set_hnd/training';
+% handwrittenDir = 'small_data_set_hnd/testing';
 
 
 % |imageDatastore| recursively scans the directory tree containing the
@@ -22,6 +22,7 @@ countEachLabel(testSet)
 
 %show some of the training set
 figure;
+title('Training Set');
 
 subplot(2,3,1);
 imshow(trainingSet.Files{102});
