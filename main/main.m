@@ -1,4 +1,4 @@
-clc; clear;
+clc; clear; close all;
 
 % PREPROCESSING
 image = imread('check_no_edge.jpg');
