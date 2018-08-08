@@ -6,9 +6,12 @@ im=imread('check.jpg');
 
 disp('Grayscaling image...');
 gray=rgb2gray(im);
+figure,imshow(gray);
 
 disp('Binarizing image using Sauvolas threshold...');
 bin=sauvola(gray);
+figure,imshow(bin);
+
 imGui=im2uint8(bin);
 bw = imcomplement(bin);
 %imshow(bw_thin);
