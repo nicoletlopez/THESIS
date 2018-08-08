@@ -2,15 +2,29 @@ clear;clc;close all;
 
 disp('----------------START----------------');
 disp('Reading image...');
-im=imread('check.jpg');
+
+%image file name
+file='f0010_18.jpg';
+info=imfinfo(file);
+
+%read file
+im=imread(file);
+
+
+%add noise
+disp('Adding noise to image...');
+im=imnoise(im,'speckle');
+figure('Name','Image with Noise'),imshow(im);
+
+
 
 disp('Grayscaling image...');
 gray=rgb2gray(im);
-figure,imshow(gray);
+figure('Name','Grayscaled Image'),imshow(gray);
 
 disp('Binarizing image using Sauvolas threshold...');
 bin=sauvola(gray);
-figure,imshow(bin);
+figure('Name','Binarized Image'),imshow(bin);
 
 imGui=im2uint8(bin);
 bw = imcomplement(bin);
@@ -48,7 +62,7 @@ aspectRatio = width ./ height;
 
 % An aspect ratio between 0.25 and 1 is typical for individual characters
 % as they are usually not very short and wide or very tall and skinny.
-roi = roi(aspectRatio > 0.2 & aspectRatio < 2 ,:);
+roi = roi(aspectRatio > 0.2 & aspectRatio < 2 ,:);,info.Width,info.Height
 
 
 disp('Segmenting characters in image...');
@@ -60,12 +74,13 @@ imshow(img);
 roiCount=numel(roi(:,1));
 
 disp('Cropping and saving images...');
-
+folderName=strcat(info.Filename,int2str(info.FileSize),info.CodingMethod,info.CodingProcess);
+mkdir(folderName);
 for i=1:roiCount
     j=roi(i,1:4);
     cropImage=imcrop(bin,j);
     fileName=strcat('extract',int2str(i),'.png');
-    fullFileName=fullfile('extracts',fileName);
+    fullFileName=fullfile(folderName,fileName);
     imwrite(cropImage,fullFileName);
     %cropImageArray=repmat(cropImage,[1 1 1 1]);
     %imageArray.append=cropImageArray;
