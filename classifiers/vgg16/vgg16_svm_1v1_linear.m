@@ -9,7 +9,7 @@ vgg16_svm_1v1_linear_classifer = fitcecoc(vgg16TrainingFeatures, trainingLabels,
 
 % Evaluate
 predictedLabels = predict(vgg16_svm_1v1_linear_classifer,vgg16TestFeatures,...
-    'ObservationsIn','columns');
+    'ObservationsIn','columns','Options',options);
 
 testLabels = testSet.Labels;
 
