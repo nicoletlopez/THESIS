@@ -9,7 +9,7 @@ alexnet_svm_1v1_rbf_classifer = fitcecoc(alexnetTrainingFeatures, trainingLabels
 
 % Evaluate
 predictedLabels = predict(alexnet_svm_1v1_rbf_classifer,alexnetTestFeatures,...
-    'ObservationsIn','columns');
+    'ObservationsIn','columns','Options',options);
 
 testLabels = testSet.Labels;
 

@@ -9,7 +9,7 @@ alexnet_svm_1v1_linear_classifer = fitcecoc(alexnetTrainingFeatures, trainingLab
 
 % Evaluate
 predictedLabels = predict(alexnet_svm_1v1_linear_classifer,alexnetTestFeatures,...
-    'ObservationsIn','columns');
+    'ObservationsIn','columns','Options',options);
 
 testLabels = testSet.Labels;
 

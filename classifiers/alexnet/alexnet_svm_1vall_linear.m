@@ -2,13 +2,13 @@ pool = parpool;
 options = statset('UseParallel',true);
 
 trainingLabels = trainingSet.Labels;
-template = templateSVM('KernelFunction','gaussian');
-alexnet_svm_1vall_gaussian_classifer = fitcecoc(alexnetTrainingFeatures, trainingLabels,...
+template = templateSVM('KernelFunction','linear');
+alexnet_svm_1vall_linear_classifer = fitcecoc(alexnetTrainingFeatures, trainingLabels,...
         'Learners',template,'Coding','onevsall',...
         'ObservationsIn','columns','Options',options);
 
 % Evaluate
-predictedLabels = predict(alexnet_svm_1vall_gaussian_classifer,alexnetTestFeatures,...
+predictedLabels = predict(alexnet_svm_1vall_linear_classifer,alexnetTestFeatures,...
     'ObservationsIn','columns','Options',options);
 
 testLabels = testSet.Labels;
@@ -16,4 +16,4 @@ testLabels = testSet.Labels;
 confMat = confusionmat(testLabels,predictedLabels);
 confMat = bsxfun(@rdivide, confMat, sum(confMat,2));
 
-alexnet_svm_1vall_gaussian_accuracy = mean(diag(confMat));
+alexnet_svm_1vall_linear_accuracy = mean(diag(confMat));

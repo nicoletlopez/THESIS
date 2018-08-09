@@ -9,7 +9,7 @@ alexnet_svm_1vall_gaussian_classifer = fitcecoc(alexnetTrainingFeatures, trainin
 
 % Evaluate
 predictedLabels = predict(alexnet_svm_1vall_gaussian_classifer,alexnetTestFeatures,...
-    'ObservationsIn','columns');
+    'ObservationsIn','columns','Options',options);
 
 testLabels = testSet.Labels;
 

@@ -4,12 +4,12 @@ options = statset('UseParallel',true);
 trainingLabels = trainingSet.Labels;
 template = templateSVM('KernelFunction','rbf');
 alexnet_svm_1vall_rbf_classifer = fitcecoc(alexnetTrainingFeatures, trainingLabels,...
-        'Learners',template,'Coding','onevsone',...
+        'Learners',template,'Coding','onevsall',...
         'ObservationsIn','columns','Options',options);
 
 % Evaluate
 predictedLabels = predict(alexnet_svm_1vall_rbf_classifer,alexnetTestFeatures,...
-    'ObservationsIn','columns');
+    'ObservationsIn','columns','Options',options);
 
 testLabels = testSet.Labels;
 
