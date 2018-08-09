@@ -4,12 +4,12 @@ options = statset('UseParallel',true);
 trainingLabels = trainingSet.Labels;
 template = templateSVM('KernelFunction','linear');
 googlenet_svm_1vall_linear_classifer = fitcecoc(googlenetTrainingFeatures, trainingLabels,...
-        'Learners',template,'Coding','onevsone',...
+        'Learners',template,'Coding','onevsall',...
         'ObservationsIn','columns','Options',options);
 
 % Evaluate
 predictedLabels = predict(googlenet_svm_1vall_linear_classifer,googlenetTestFeatures,...
-    'ObservationsIn','columns');
+    'ObservationsIn','columns','Options',options);
 
 testLabels = testSet.Labels;
 

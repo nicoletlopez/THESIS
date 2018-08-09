@@ -9,7 +9,7 @@ googlenet_svm_1v1_rbf_classifer = fitcecoc(googlenetTrainingFeatures, trainingLa
 
 % Evaluate
 predictedLabels = predict(googlenet_svm_1v1_rbf_classifer,googlenetTestFeatures,...
-    'ObservationsIn','columns');
+    'ObservationsIn','columns','Options',options);
 
 testLabels = testSet.Labels;
 

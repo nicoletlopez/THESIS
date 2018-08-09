@@ -9,7 +9,7 @@ googlenet_svm_1v1_gaussian_classifer = fitcecoc(googlenetTrainingFeatures, train
 
 % Evaluate
 predictedLabels = predict(googlenet_svm_1v1_gaussian_classifer,googlenetTestFeatures,...
-    'ObservationsIn','columns');
+    'ObservationsIn','columns','Options',options);
 
 testLabels = testSet.Labels;
 
