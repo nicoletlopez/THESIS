@@ -4,12 +4,12 @@ options = statset('UseParallel',true);
 trainingLabels = trainingSet.Labels;
 template = templateSVM('KernelFunction','linear');
 resnet101_svm_1vall_linear_classifer = fitcecoc(resnet101TrainingFeatures, trainingLabels,...
-        'Learners',template,'Coding','onevsone',...
+        'Learners',template,'Coding','onevsall',...
         'ObservationsIn','columns','Options',options);
 
 % Evaluate
 predictedLabels = predict(resnet101_svm_1vall_linear_classifer,resnet101TestFeatures,...
-    'ObservationsIn','columns');
+    'ObservationsIn','columns','Options',options);
 
 testLabels = testSet.Labels;
 

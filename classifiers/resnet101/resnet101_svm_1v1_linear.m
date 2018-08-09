@@ -9,7 +9,7 @@ resnet101_svm_1v1_linear_classifer = fitcecoc(resnet101TrainingFeatures, trainin
 
 % Evaluate
 predictedLabels = predict(resnet101_svm_1v1_linear_classifer,resnet101TestFeatures,...
-    'ObservationsIn','columns');
+    'ObservationsIn','columns','Options',options);
 
 testLabels = testSet.Labels;
 
