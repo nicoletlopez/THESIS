@@ -4,12 +4,12 @@ options = statset('UseParallel',true);
 trainingLabels = trainingSet.Labels;
 template = templateSVM('KernelFunction','rbf');
 inceptionv3_svm_1vall_rbf_classifer = fitcecoc(inceptionv3TrainingFeatures, trainingLabels,...
-        'Learners',template,'Coding','onevsone',...
+        'Learners',template,'Coding','onevsall',...
         'ObservationsIn','columns','Options',options);
 
 % Evaluate
 predictedLabels = predict(inceptionv3_svm_1vall_rbf_classifer,inceptionv3TestFeatures,...
-    'ObservationsIn','columns');
+    'ObservationsIn','columns','Options',options);
 
 testLabels = testSet.Labels;
 

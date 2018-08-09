@@ -9,7 +9,7 @@ inceptionv3_svm_1v1_rbf_classifer = fitcecoc(inceptionv3TrainingFeatures, traini
 
 % Evaluate
 predictedLabels = predict(inceptionv3_svm_1v1_rbf_classifer,inceptionv3TestFeatures,...
-    'ObservationsIn','columns');
+    'ObservationsIn','columns','Options',options);
 
 testLabels = testSet.Labels;
 

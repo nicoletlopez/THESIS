@@ -9,7 +9,7 @@ inceptionv3_svm_1v1_gaussian_classifer = fitcecoc(inceptionv3TrainingFeatures, t
 
 % Evaluate
 predictedLabels = predict(inceptionv3_svm_1v1_gaussian_classifer,inceptionv3TestFeatures,...
-    'ObservationsIn','columns');
+    'ObservationsIn','columns','Options',options);
 
 testLabels = testSet.Labels;
 
