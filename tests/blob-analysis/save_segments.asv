@@ -90,15 +90,14 @@ for i=1:roiCount
     %crop image to box coordinates
     cropImage=imcrop(bin,j);
     
-    %Transform cropped image into uint8 for imgaussfilt to work
+    %Change cropped image to uint8 for imgaussfilt to work
     cropImage=im2uint8(cropImage);
     
-    %Apply blur
+    %
     cropImage=imgaussfilt(cropImage,2);
-    
-    fileName=strcat('extract',int2str(i),'.png');
-    fullFileName=fullfile(folderName,fileName);
-    imwrite(cropImage,fullFileName,'png');
+    %fileName=strcat('extract',int2str(i),'.png');
+    %fullFileName=fullfile(folderName,fileName);
+    %imwrite(cropImage,fullFileName,'png');
 end
 
 
