@@ -9,7 +9,7 @@ vgg19_svm_1v1_gaussian_classifer = fitcecoc(vgg19TrainingFeatures, trainingLabel
 
 % Evaluate
 predictedLabels = predict(vgg19_svm_1v1_gaussian_classifer,vgg19TestFeatures,...
-    'ObservationsIn','columns');
+    'ObservationsIn','columns','Options',options);
 
 testLabels = testSet.Labels;
 

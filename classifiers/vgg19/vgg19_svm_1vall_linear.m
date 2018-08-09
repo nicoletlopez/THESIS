@@ -4,12 +4,12 @@ options = statset('UseParallel',true);
 trainingLabels = trainingSet.Labels;
 template = templateSVM('KernelFunction','linear');
 vgg19_svm_1vall_linear_classifer = fitcecoc(vgg19TrainingFeatures, trainingLabels,...
-        'Learners',template,'Coding','onevsone',...
+        'Learners',template,'Coding','onevsall',...
         'ObservationsIn','columns','Options',options);
 
 % Evaluate
 predictedLabels = predict(vgg19_svm_1vall_linear_classifer,vgg19TestFeatures,...
-    'ObservationsIn','columns');
+    'ObservationsIn','columns','Options',options);
 
 testLabels = testSet.Labels;
 
