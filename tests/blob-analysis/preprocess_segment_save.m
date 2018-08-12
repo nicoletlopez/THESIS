@@ -1,31 +1,39 @@
 clear;clc;close all;
 
 disp('----------------START----------------');
-disp('Reading image...');
 
 %image file name
-file='resized-form.jpg';
-info=imfinfo(file);
+[file,path]=uigetfile('*.png;*.jpg;*.tif;*.tiff');
+filePath=fullfile(path,file);
 
+info=imfinfo(filePath);
+
+disp('Reading image...');
 %read file
-im=imread(file);
+im=imread(filePath);
+%convert to rgb
+im=im(:,:,[1 1 1]);
+%uint16
+im=im2uint16(im);
 
-
+%im=im2int16(im);
 %add noise
 %{
 disp('Adding noise to image...');
 im=imnoise(im,'speckle');
-figure('Name','Image with Noise'),imshow(im);
 %}
+%figure('Name','Image with Noise'),imshow(im);
+
 
 
 disp('Grayscaling image...');
 gray=rgb2gray(im);
-figure('Name','Grayscaled Image'),imshow(gray);
+%figure('Name','Grayscaled Image'),imshow(gray);
 
 disp('Binarizing image using Sauvolas threshold...');
+
 bin=sauvola(gray);
-figure('Name','Binarized Image'),imshow(bin);
+%figure('Name','Binarized Image'),imshow(bin);
 
 imGui=im2uint8(bin);
 bw = imcomplement(bin);
@@ -42,7 +50,7 @@ We are only using these to get the bounding boxes for the letters:
 %im_close=imclose(bw,se);
 
 %apply ROI-based processing to improve results
-blobAnalyzer=vision.BlobAnalysis('MaximumCount',1000000);
+blobAnalyzer=vision.BlobAnalysis('MaximumCount',99999999);
 
 % Run the blob analyzer to find connected components and their statistics.
 %[area, centroids, roi] = step(blobAnalyzer, im_close);
@@ -72,15 +80,18 @@ roi = roi(aspectRatio > 0.2 & aspectRatio < 2 ,:);
 disp('Segmenting characters in image...');
 img = insertShape(imGui, 'rectangle', roi,'Color','blue');
 
-figure('Name','Character segmentation with constraints'),
-imshow(img);
+%figure('Name','Character segmentation with constraints'),imshow(img);
+figure,imshow(img);
+
 
 %number of boxes
 roiCount=numel(roi(:,1));
 
-
 disp('Cropping and saving images...');
-folderName=strcat(info.Filename,int2str(info.FileSize),info.CodingMethod,info.CodingProcess);
+folderName=strcat(info.Filename,int2str(info.FileSize));
+export_fig(sprintf('segmented-%s.pdf',file),'-pdf');
+%saveas(img,sprintf('segmented-%s.pdf',file));
+%print(img,sprintf('segmented-%s.pdf',file),'-dpdf');
 mkdir(folderName);
 for i=1:roiCount
     
@@ -91,14 +102,18 @@ for i=1:roiCount
     cropImage=imcrop(bin,j);
     
     %Transform cropped image into uint8 for imgaussfilt to work
-    cropImage=im2uint8(cropImage);
+    cropImage=im2uint16(cropImage);
     
     %Apply blur
-    cropImage=imgaussfilt(cropImage,2);
+    %cropImage=imgaussfilt(cropImage,2);
+       
     
-    fileName=strcat('extract',int2str(i),'.png');
+    %fileName=strcat('extract',int2str(i),'.png');
+    fileName=sprintf('extract%d.png',i);
     fullFileName=fullfile(folderName,fileName);
     imwrite(cropImage,fullFileName,'png');
+    %export_fig(fullFileName);
+    %print(cropImage,fullFileName,'-dpng');
 end
 
 
