@@ -41,7 +41,7 @@ for i=1:fileCount
     imshow(fig);
     %}
     
-    im=imcrop(im,roi);   
+    im=imcrop(gray,roi);   
     n=99999;
     l=1;
     rand=randperm(n);
