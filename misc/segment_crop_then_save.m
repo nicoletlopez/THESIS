@@ -20,21 +20,34 @@ for i=1:fileCount
     else
         im=imread(filePath{i});
     end
+    
     gray=rgb2gray(im);
     bin=imbinarize(gray);
+    %buffersize = 4;
+    %se = strel('disk',10);
+    se = strel('line',11,90);
     bw=imcomplement(bin);
+    bw=imclose(bw,se);
     
-    blobAnalyzer=vision.BlobAnalysis('MaximumCount',2);
+    blobAnalyzer=vision.BlobAnalysis('MaximumCount',10);
     [area, centroids, roi] = step(blobAnalyzer, bw);
-    im=imcrop(im,roi);
+    areaConstraint=area>20;
+
+    %Keep regions that meet the area constraint
+    roi = double(roi(areaConstraint, :));
+    %{
+    fig=insertShape(im, 'rectangle', roi,'Color','blue');
+	figure('Name','Character segmentation without constraints'),
+    imshow(fig);
+    %}
+    
+    im=imcrop(im,roi);   
     n=99999;
     l=1;
     rand=randperm(n);
     out=rand(1);
-    
     fileName=sprintf('cropped-image-%d-%d.png',out,i);
     fullFileName=fullfile(char(folderName),char(fileName));
-    
     imwrite(im,fullFileName,'png');
     %export_fig(fullFileName,'png')
 end
