@@ -9,7 +9,6 @@ elseif isdir(filename) %if the input is a directory, get all the image files fro
 else %if it is a single file:
     files.name=filename;
 end
-
 %loop over all the files
 for n=1:length(files)
     filename=files(n).name;
@@ -23,7 +22,7 @@ for n=1:length(files)
             im=imbinarize(im);
         end
     end
-    imwrite(im,filename)
+    imwrite(im,strcat('1bit-',filename))
 end
 %change back to calling directory, if necessary
 if exist('currentdir','var')
