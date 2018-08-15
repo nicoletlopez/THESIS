@@ -22,7 +22,7 @@ for n=1:length(files)
             im=imbinarize(im);
         end
     end
-    imwrite(im,strcat('1bit-',filename))
+    imwrite(im,filename)
 end
 %change back to calling directory, if necessary
 if exist('currentdir','var')
