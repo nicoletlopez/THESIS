@@ -21,4 +21,4 @@ img_gray = rgb2gray(image);
 bin = sauvola(img_gray,[3 3], 0.34);
 
 %show the image
-imshow(bin)
+imshowpair(image,bin,'montage')

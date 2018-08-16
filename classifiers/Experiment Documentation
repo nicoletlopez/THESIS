@@ -1,0 +1,21 @@
+Trial               :   1 
+    Neural Net Used :   GoogLeNet 
+    FeatureLayer    :   loss3-classifier
+    Machine         :   SVM 1v1 Linear
+    Training Set    :   1120 (80%) (Normal Size No Crop)
+    Test Set        :   280 (20%) (Normal Size No Crop)
+    Accuracy        :   
+Trial               :   2 
+    Neural Net Used :   ALexNet 
+    FeatureLayer    :   fc7
+    Machine         :   SVM 1v1 Linear
+    Training Set    :   1120 (80%) (Normal Size No Crop)
+    Test Set        :   280 (20%) (Normal Size No Crop)
+    Accuracy        :   88.85%
+Trial               :   3
+    Neural Net Used :   ResNet50
+    FeatureLayer    :   fc1000
+    Machine         :   SVM 1v1 Linear
+    Training Set    :   1120 (80%) (CROPPED)
+    Test Set        :   280 (20%) (CROPPED)
+    Accuracy        :   83.24%
