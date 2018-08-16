@@ -29,6 +29,7 @@ for n=1:length(files)
     roi = double(roi(areaConstraint, :));
     im=insertShape(im16,'filledrectangle',roi,'color','white','opacity',1);
     im=rgb2gray(im);
+    im=imbinarize(im);
     im=im2uint16(im);
     im = repmat(im,[1,1,3]);
     im=uint8(im);
