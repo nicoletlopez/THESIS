@@ -1,19 +1,11 @@
+% Train a 1v1 Linear SVM classifier
+
+% Start a parallel pool (use all cores)
 pool = parpool;
 options = statset('UseParallel',true);
 
-trainingLabels = trainingSet.Labels;
-template = templateSVM('KernelFunction','linear');
-resnet50_svm_1v1_linear_classifer = fitcecoc(resnet50TrainingFeatures, trainingLabels,...
-        'Learners',template,'Coding','onevsone',...
-        'ObservationsIn','columns','Options',options);
-
-% Evaluate
-predictedLabels = predict(resnet50_svm_1v1_linear_classifer,resnet50TestFeatures,...
-    'ObservationsIn','columns','Options',options);
-
-testLabels = testSet.Labels;
-
-confMat = confusionmat(testLabels,predictedLabels);
-confMat = bsxfun(@rdivide, confMat, sum(confMat,2));
-
-resnet50_svm_1v1_linear_accuracy = mean(diag(confMat));
+% Train the classifier
+template = templateSVM('KernelFunction','linear','SaveSupportVectors',true);
+resnet50_svm_1v1_linear_classifier = fitcecoc(resnet50_training_features, training_set_labels,...
+    'Learners',template,'Coding','onevsone','ObservationsIn','columns',...
+    'Options',options);
