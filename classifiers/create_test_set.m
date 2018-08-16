@@ -5,8 +5,7 @@ root_folder = fullfile('/home','pam','Documents','FINAL',...
     'M', 'n', 'N', 'O', 'P', 'q', 'Q', 'r', 'R', 'S', 't', 'T', 'U', ...
     'V', 'W', 'X', 'Y', 'Z'};
 
-test_set = imageDatastore(fullfile(root_folder,categories),'LabelSource','foldernames',...
-    'ReadFcn',@gray2rgb24);
+test_set = imageDatastore(fullfile(root_folder,categories),'LabelSource','foldernames');
 % test_set = imageDatastore(fullfile(root_folder,categories),'LabelSource','foldernames');
 
 test_set_labels = test_set.Labels;
