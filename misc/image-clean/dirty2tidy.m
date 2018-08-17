@@ -14,6 +14,7 @@ for n=1:length(files)
     filename=files(n).name;
     [im,map]=imread(filename);
     im16=im2uint16(im);
+    
     if(isempty(map))
         if(size(im16,3)==1)
             bin=imbinarize(im16);
@@ -28,11 +29,23 @@ for n=1:length(files)
     areaConstraint=area<max(area);
     roi = double(roi(areaConstraint, :));
     im=insertShape(im16,'filledrectangle',roi,'color','white','opacity',1);
+    %{
+    roiCount=numel(roi(:,1));
+    imArray=[];
+    for i=1:roiCount
+        x0=roi(i,1)-1;
+        y0=roi(i,2)-1;
+        x1=x0+roi(i,3);
+        y1=y0+roi(i,4);
+        c = [x0, x1, x1, x0];
+        r = [y0, y0, y1, y1];
+        im=regionfill(im16,c,r);
+        imArray=[imArray,im];
+        %poly=roipoly(im16,c,r);
+    end
+    %}
     im=rgb2gray(im);
     im=imbinarize(im);
-    im=im2uint16(im);
-    im = repmat(im,[1,1,3]);
-    im=uint8(im);
     imwrite(im,filename)
 end
 %change back to calling directory, if necessary
